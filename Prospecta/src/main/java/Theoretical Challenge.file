@@ -1,0 +1,110 @@
+
+Question 1:  Suppose you have a CSV file with the data below.
+ 
+A1: 5, A2: 7, A3: 9, B1: 3, B2: 8, B3: =4+5, C1: =5+A1, C2: =A2+B2, C3: =C2+B3
+ 
+This can be represented in an excel sheet below:
+ 
+A B C
+
+1 5 3 =5+A1
+
+2 7 8 =A2+B2
+
+3 9 =4+5 =C2+B3
+
+
+ 
+I want a program that will take the CSV input above and produce CSV output with the results.
+  If it is a value, then return a value. 
+   If it is a formula then calculate the formula and return the value of that formula.
+   
+   
+   
+
+ Answer 1:  for The Above question i will follow some steps to solve this.
+ 
+ 
+   step 1: I will create a csv.fie in the current directory path and the save the above data in the given order.
+           
+   step 2: Now i will create a BufferReader.
+     
+           BufferReadder bufferReader = new BufferReader(new FileReader("csv.file"));           
+           
+   step 3: Using above buffer class object i use a method reatLine() to read the data in the file.
+   
+           String data = bufferReader.readLine();          
+           
+   
+   step 4: Now i will convert the above string data into Array of String.
+   
+       String[] arrayOfData = data.split(",");
+       
+       
+     
+   step 5: Now i will create a Map and store the data into key value pairs in the map.
+   
+   
+        Map<String, String> map1 = new LinkedHashMap<>();
+   
+        Map<String, Integer> map2 = new LinkedHashMap<>();
+        
+        
+   
+   step 6: in the above code i uses two maps, map1 will use to store the data in key value pairs and map2 is used for convert the String into Integer.Now i 
+           use loop.
+     
+           for(int i=0; i<arrayOfData.length; i++){
+           
+              String[] temp = arrayOfData[i].split(":");
+           
+               map1.put(temp[0].trim(), temp[1].trim());
+           
+           }
+             
+     
+    step 7: Now I will run a loop and which will check if it is integer then store the value in map2 or if it is a formula the i 
+            create a function that used to solve the formula then after i will store the data.  
+     
+     
+              for(Map.Entry<String,String> entry : map1.entrySet()){
+              
+              String value = entry.getValue();
+              
+              if(value.matches("-?\\d+")){
+              map2.put(entry.getKey(), Integer.parseInt(value));
+              }
+              else{
+                int result = evaluteformula(value,map2); //  will create A METHOD name evaluatefromula to calculte the formula value
+                map2.put(entry.geyKey(), result);
+              }
+              }
+     
+     
+    step 8: int the last run the loop on the map2 and show the result int the key - value pairs.
+    
+              for(Map.Entry<String,Integer> entry : map2.entrySet()){
+                
+                System.out.println(entry.getKey(), entry.getValue());
+              
+              }
+    
+    
+   Question 2:  What type of errors you would you check for?
+   
+   Answer 2:   
+   
+   1. while reading the data using bufferReader i have to use split(" ") and trim() method properly to storing the data.
+   
+   2. one more thing i have to we need to care about is = , + and : sign as well. 
+   
+   3. the function i used to solve the formula if accur should be written in right manner.
+   
+   Qustions 3: How might a user break your code?
+     
+    Answer 3:  User can break my code by changing the value in the csv.file
+               if user will the format then this code will not run.
+               
+       
+       
+                 

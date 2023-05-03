@@ -1,0 +1,23 @@
+
+
+  Question : what are the key things you would consider when creating/consuming an API to ensure that it is secure and reliable?
+  
+  Answer : There should be some key points which are following :- 
+  
+  
+  1.  Authentication : Our Application should have a feature of authentication for the purpose user accessing API
+                       Spring Security is the better option for spring boot application here.
+                       
+  
+  2. Authorization :  This is also a important feature for Application like Web Services so that only authorized person 
+                      can make changed int the databases and other functionality. this is also we can use by spring security
+                      
+  
+  3. Validation :    This feature allow user to fill the data accordingly while registring himself. for example validation is provided 
+                     for password like password should be min 8 character and have atleast one unique  character.
+                     
+                     
+  4. Encryption:    This is also a important part of an application that all the sensitive data should be encrypted in the application 
+                     so no other can copy or hack the data of user or admin. for example user or admin password                                                             
+       
+         
